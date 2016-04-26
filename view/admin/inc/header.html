@@ -47,27 +47,8 @@
   <ul>
     <li><a href="/admin"><i class="fa fa-tachometer"></i></i> <span>Dashboard</span></a> </li>
     <li><a href="/admin/index/index"><i class="icon icon-th"></i> <span>Slideshares</span></a> </li>
-    <li><a href="/admin/index/images"><i class="fa fa-picture-o"></i> <span>Images</span></a> </li>
-    <li id="addons" class="submenu"> <a href="#"><i class="fa fa-suitcase"></i> <span>Addons</span> <span class="label label-success">2</span></a>
-      <ul>
-        <li><a href="/static/addon/editor/index.html" target="_blank">SVG Editor</a></li>
-        <li><a href="https://photo-editor.canva.com/" target="_blank">Photo Editor</a></li>
-      </ul>
-    </li>
-    <li><a href="/admin/index/trash"><i class="fa fa-trash"></i> <span>Trash</span></a> </li>
+    <li><a href="/admin/index/demo"><i class="fa fa-tachometer"></i> <span>Slide</span></a> </li>
+    <li><a href="/admin/index/index"><i class="fa fa-suitcase"></i> <span>Slideres</span></a> </li>
     <li><a href="/admin/index/settings"><i class="fa fa-cog"></i> <span>Settings</span></a> </li>
-    <li><a href="https://github.com/akira-cn/matrix#matrix" target="_blank"><i class="fa fa-h-square"></i> <span>Help</span></a> </li>
   </ul>
 </div>
-<script>
-$('#addons').click(function(){
-  if($(this).hasClass('open')){
-    $('#addons > ul').slideUp();
-    $(this).removeClass('open');
-  }else{
-    $('#addons > ul').slideDown();
-    $(this).addClass('open');
-  }
-});
-</script>
-<!--sidebar-menu-->
