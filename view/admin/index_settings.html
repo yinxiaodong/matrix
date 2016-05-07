@@ -4,7 +4,7 @@
 <script>
 (function(){
   var lis = document.querySelectorAll('#sidebar>ul>li');
-  lis[3].className = 'active';
+  lis[4].className = 'active';
 })();
 </script>
 <style>
@@ -37,10 +37,10 @@
       <%}%>
     <%}%>
     <div class="row-fluid">
-      <div class="span12">
+      <div class="span3">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="fa fa-info-circle"></i> </span>
-            <h5>Change password</h5>
+            <h5>修改密码</h5>
           </div>
           <div class="widget-content nopadding">
             <form class="form-horizontal" method="post" action="/admin/user/passwd" name="password_validate" id="password_validate" novalidate="novalidate">
