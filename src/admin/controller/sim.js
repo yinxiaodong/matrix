@@ -13,12 +13,40 @@ export default class extends Base {
     this.redirect('/admin/user');   
     return Promise.reject(); 
   }
+  
+  async indexAction(){
+    let page = this.get('page') || 1;
+    let num = this.get('num') || 10;
+    let q = this.get('q');
+
+    let condition = {
+      state:["<>", 2]
+    };
+
+    if(q){
+      condition.name = ['like', '%' + q + '%'];
+    }
+
+    let model = this.model('sim');
+    let slides = await model.page(page, num)
+      .field('sim.id, name, pinyin, unit, pint, sint, prc, sub')
+      .order('id DESC')
+      .where(condition)
+      .countSelect();
+
+    this.assign({
+      slides: slides.data||[],
+      pages: slides.totalPages,
+      page: slides.currentPage
+    });
+    return this.display();
+  }
 
   async saveAction(){
     let {sid, title, theme, slide_content} = this.post();
 
     //console.log(title, theme, slide_content); 
-    let model = this.model("slideshare");
+    let model = this.model("sim");
     let moment = require('moment');
     let datetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -48,22 +76,20 @@ export default class extends Base {
   
   async deleteAction(){
     let {id} = this.get();
-    let model = this.model("slideshare");
-    let moment = require('moment');
-    let datetime = moment().format('YYYY-MM-DD HH:mm:ss');
+    let model = this.model("sim");
 
     if(id){
       let affectedRows = await model
         .where({id: ['in', id]})
-        .update({state: 2, updateTime: datetime});
+        .update({state: 2});
     }
 
-    return this.redirect('/admin');
+    return this.redirect('/admin/sim');
   }
   
   async recoverAction(){
     let {id} = this.get();
-    let model = this.model("slideshare");
+    let model = this.model("sim");
     let moment = require('moment');
     let datetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -78,7 +104,7 @@ export default class extends Base {
 
   async publishAction(){
     let {id} = this.get();
-    let model = this.model("slideshare");
+    let model = this.model("sim");
     let moment = require('moment');
     let datetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -97,7 +123,7 @@ export default class extends Base {
 
   async destoryAction(){
     let {id} = this.get();
-    let model = this.model("slideshare");
+    let model = this.model("sim");
 
     if(id){
       let affectedRows = await model
@@ -111,7 +137,7 @@ export default class extends Base {
   async previewAction(){
     let {id} = this.get();
     if(id){
-      let model = this.model("slideshare");
+      let model = this.model("sim");
       let slide = await model.where({id}).find();
       //console.log(slide);
       this.assign({slide});
