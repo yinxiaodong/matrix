@@ -3,27 +3,27 @@
 import Base from './base.js';
 
 export default class extends Base {
-  
-  async __before(){
+
+  async __before() {
     this.userInfo = await this.session('userInfo');
-    if(this.userInfo){
+    if (this.userInfo) {
       this.assign('user', this.userInfo);
       return Promise.resolve();
     }
-    this.redirect('/admin/user');   
-    return Promise.reject(); 
+    this.redirect('/admin/user');
+    return Promise.reject();
   }
-  
-  async indexAction(){
+
+  async indexAction() {
     let page = this.get('page') || 1;
     let num = this.get('num') || 10;
     let q = this.get('q');
 
     let condition = {
-      state:["<>", 2]
+      state: ["<>", 2]
     };
 
-    if(q){
+    if (q) {
       condition.name = ['like', '%' + q + '%'];
     }
 
@@ -35,14 +35,14 @@ export default class extends Base {
       .countSelect();
 
     this.assign({
-      slides: slides.data||[],
+      slides: slides.data || [],
       pages: slides.totalPages,
       page: slides.currentPage
     });
     return this.display();
   }
-
-  async saveAction(){
+//保存更新
+  async saveAction() {
     let {sid, title, theme, slide_content} = this.post();
 
     //console.log(title, theme, slide_content); 
@@ -60,87 +60,87 @@ export default class extends Base {
     };
     //console.log(record);
 
-    if(!sid){
-      sid = await model.add(record).catch(err=>this.json({err:err.message||'error'}));
-      
-      if(sid) return this.json({err:'', id: sid});
-    }else{
-      let affectedRows = await model
-        .where({id: sid})
-        .update(record)
-        .catch(err=>this.json({err:err.message||'error'}));
+    if (!sid) {
+      sid = await model.add(record).catch(err => this.json({ err: err.message || 'error' }));
 
-      if(affectedRows) return this.json({err:'', id: sid});
+      if (sid) return this.json({ err: '', id: sid });
+    } else {
+      let affectedRows = await model
+        .where({ id: sid })
+        .update(record)
+        .catch(err => this.json({ err: err.message || 'error' }));
+
+      if (affectedRows) return this.json({ err: '', id: sid });
     }
   }
-  
-  async deleteAction(){
+//禁用
+  async deleteAction() {
     let {id} = this.get();
     let model = this.model("sim");
 
-    if(id){
+    if (id) {
       let affectedRows = await model
-        .where({id: ['in', id]})
-        .update({state: 2});
+        .where({ id: ['in', id] })
+        .update({ state: 2 });
     }
 
     return this.redirect('/admin/sim');
   }
-  
-  async recoverAction(){
+//恢复
+  async recoverAction() {
     let {id} = this.get();
     let model = this.model("sim");
     let moment = require('moment');
     let datetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-    if(id){
+    if (id) {
       let affectedRows = await model
-        .where({id: ['in', id]})
-        .update({state: 0, updateTime: datetime});
+        .where({ id: ['in', id] })
+        .update({ state: 0, updateTime: datetime });
     }
 
-    return this.redirect('/admin/index/trash');    
+    return this.redirect('/admin/sim');
   }
-
-  async publishAction(){
+//保留
+  async publishAction() {
     let {id} = this.get();
     let model = this.model("sim");
     let moment = require('moment');
     let datetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-    if(id){
-      let data = await model.where({id}).find();
-      if(data){
+    if (id) {
+      let data = await model.where({ id }).find();
+      if (data) {
         //console.log(data);
         let affectedRows = await model
-          .where({id: ['in', id]})
-          .update({state: 0|!data.state, updateTime: datetime});
-        }
+          .where({ id: ['in', id] })
+          .update({ state: 0 | !data.state, updateTime: datetime });
+      }
     }
 
-    return this.redirect('/admin');    
+    return this.redirect('/admin');
   }
-
-  async destoryAction(){
+//删除
+  async destoryAction() {
     let {id} = this.get();
     let model = this.model("sim");
 
-    if(id){
+    if (id) {
       let affectedRows = await model
-        .where({id: ['in', id]})
+        .where({ id: ['in', id] })
         .delete();
     }
 
-    return this.redirect('/admin/index/trash');     
+    return this.redirect('/admin/index/trash');
   }
-
-  async previewAction(){
+//预览
+  async previewAction() {
     let {id} = this.get();
-    if(id){
+    if (id) {
       let model = this.model("sim");
-      let slide = await model.where({id}).find();
+      let slide = await model.where({ id }).find();
       //console.log(slide);
-      this.assign({slide});
+      this.assign({ slide });
     }
     return this.display();
   }
