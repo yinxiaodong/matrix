@@ -26,7 +26,7 @@
     <li class=""><a title="Portal" href="/"><i class="icon icon-home"></i> <span class="text">返回网站</span></a></li>
     <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">欢迎使用 <%=user.name%></span><b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><a href="#"><i class="icon-user"></i> 我的资料</a></li>
+        <li><a href="/admin/index/settings"><i class="icon-user"></i> 我的资料</a></li>
         <li class="divider"></li>
         <li><a href="/admin/user/logout"><i class="icon-key"></i> 退出</a></li>
       </ul>
@@ -45,19 +45,18 @@
 <!--sidebar-menu-->
 <div id="sidebar">
   <ul>
-    <li><a href="/admin"><i class="fa fa-tachometer"></i></i> <span>Dashboard</span></a> </li>
-    <li><a href="/admin/index/edit"><i class="icon icon-th"></i> <span>Slideshares</span></a> </li>
+    <li><a href="/admin"><i class="fa fa-tachometer"></i></i> <span>首页</span></a> </li>
+    <li><a href="/admin/index/edit"><i class="icon icon-th"></i> <span>销售</span></a> </li>
     <li><a href="/admin/index/images"><i class="fa fa-tachometer"></i> <span>采购</span></a> </li>
-    <li><a href="/admin/index/trash"><i class="fa fa-suitcase"></i> <span>其他</span></a> </li>
-    <li><a href="/admin/index/settings"><i class="fa fa-cog"></i> <span>设置</span></a> </li>
+    <li><a href="/admin/index/trash"><i class="fa fa-suitcase"></i> <span>资金往来</span></a> </li>
     <li><a href="/admin/sim/index"><i class="fa fa-cog"></i> <span>库存管理</span> <span class="label label-important">3</span></a> </li>
     
-    <li class="content"> <span>Monthly Bandwidth Transfer</span>
+    <li class="content"> <span>本期完成量</span>
       <div class="progress progress-mini progress-danger active progress-striped">
-        <div style="width: 77%;" class="bar"></div>
+        <div style="width: 20%;" class="bar"></div>
       </div>
-      <span class="percent">77%</span>
-      <div class="stat">21419.94 / 14000 MB</div>
+      <span class="percent">20%</span>
+      <div class="stat">21419.94 / 14000 RMB</div>
     </li>
   </ul>
 </div>

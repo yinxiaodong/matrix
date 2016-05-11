@@ -1,11 +1,5 @@
 <%include inc/header.html%>
-<script>
-(function(){
-  var siderbar = document.getElementById('sidebar');
-  var lis = siderbar.getElementsByTagName('li');
-  lis[5].className = 'active';
-})();
-</script>
+
 <style>
   table td.center {
     text-align: center;
@@ -48,7 +42,7 @@
               <div class="control-group">
                 <label class="control-label">Title :</label>
                 <div class="controls">
-                  <input id="title" name="title" required type="text" value="<%=slide_data.title||''%>"/>
+                  <input id="title" name="title" required type="text" value="<%=slide_data.name||''%>"/>
                 </div>
               </div>
               <div class="control-group">

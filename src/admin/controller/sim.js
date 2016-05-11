@@ -144,4 +144,18 @@ export default class extends Base {
     }
     return this.display();
   }
+  
+    async editAction(){
+    let {id} = this.get();
+    let slide_data = '';
+
+    if(id){
+      let model = this.model('sim');
+      let slide = await model.where({id: id}).find();
+      slide_data = slide;
+    }
+
+    this.assign({slide_data});
+    return this.display();
+  }
 }
