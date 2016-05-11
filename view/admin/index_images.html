@@ -51,10 +51,23 @@
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Settings</a> </div>
-    <h1>Images</h1>
+    <h1>用户图像</h1>
   </div>
   <div class="container-fluid">
-    <hr>
+              
+    <div class="btn-wrapper" id="uploader">
+          <button id="picker" class="webuploader-container btn btn-primary"><i class="fa fa-folder-open"></i> Choose File</button>
+          <button id="ctlBtn" class="btn btn-success btn-default"><i class="fa fa-upload"></i> Upload</button>
+          <button id="remove" class="btn btn-danger"><i class="fa fa-times"></i> Remove</button>
+          <div id="fileinfo">
+            <span class="filename"></span>
+            <div class="progress progress-mini active progress-striped">
+              <div id="upload-progress" style="width: 0%;" class="bar"></div>
+            </div>
+          </div>
+            
+        </div>
+        
     <div id="upload_state" class="alert alert-error"></div>
     <div class="row-fluid">
       <div class="span12">
@@ -93,17 +106,7 @@
           </div>
           <%include inc/pager.html%>
         <%}%>
-        <div class="btn-wrapper" id="uploader">
-          <button id="picker" class="webuploader-container btn btn-primary"><i class="fa fa-folder-open"></i> Choose File</button>
-          <button id="ctlBtn" class="btn btn-success btn-default"><i class="fa fa-upload"></i> Upload</button>
-          <button id="remove" class="btn btn-danger"><i class="fa fa-times"></i> Remove</button>
-          <div id="fileinfo">
-            <span class="filename"></span>
-            <div class="progress progress-mini active progress-striped">
-              <div id="upload-progress" style="width: 0%;" class="bar"></div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -112,7 +115,6 @@
 
 <!--end-main-container-part-->
 
-<%include inc/footer.html%>
 
 <script>
 $('#checkall').on('click', function(e){

@@ -15,7 +15,7 @@ export default class extends Base {
   
   async indexAction(){
     let page = this.get('page') || 1;
-    let num = this.get('num') || 10;
+    let num = this.get('num') || 12;
     let q = this.get('q');
 
     let condition = {
@@ -50,7 +50,7 @@ export default class extends Base {
   
   async trashAction(){
     let model = this.model('slideshare');
-    let slides = await model.page(1, 10)
+    let slides = await model.page(1, 15)
       .field('slideshare.id, title, theme, state, updateTime, createTime, content, name')
       .join({
         table:'user',
@@ -76,7 +76,7 @@ export default class extends Base {
 
   async imagesAction(){
     let model = this.model('images');
-    let list = await model.page(1, 10)
+    let list = await model.page(1, 12)
       .where({userId: this.userInfo.id})
       .order('uploadTime DESC')
       .countSelect();
