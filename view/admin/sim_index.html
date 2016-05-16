@@ -24,7 +24,7 @@
     <div class="container-fluid">
 
       <div class="row-fluid">
-        <div class="span9">
+        <div class="span12">
           <%if(slides.length <= 0){%>
             <div class="alert alert-block">
               <%if(!http.get('q')){%>
@@ -53,10 +53,9 @@
                       <tr>
                         <th><input type="checkbox" id="checkall" name="checkall" /></th>
                         <th>品名</th>
-                        <th>单位</th>
                         <th>数量</th>
-                        <th>价格</th>
-                        <th>金额</th>
+                        <th>价格/套</th>
+                        <th>合计金额</th>
                         <th>操作</th>
                       </tr>
                     </thead>
@@ -69,15 +68,16 @@
                               <%=slides[i].name%>
                             </a>
                           </td>
-                          <td>
-                            <%=slides[i].pinyin%>
-                          </td>
-                          <td>
-                            <%=slides[i].unit%>
-                          </td>
-                          <td class="taskStatus"><span class="<%=slides[i].state==0?'in-progress':(slides[i].state==1?'done':'pending')%>"><%=slides[i].state==0?'draft':(slides[i].state==1?'online':'deleted')%></span></td>
                           <td class="center">
-                            <%=new Date(slides[i].createTime).toLocaleString()%>
+                            <%=slides[i].pint%>/
+                              <%=slides[i].sint%>
+                          </td>
+                          <td class="center">
+                            <%=slides[i].prc%>/
+                              <%=slides[i].unit%>
+                          </td>
+                          <td class="center">
+                            <%=(slides[i].pint*100+slides[i].sint*100)*(slides[i].prc*100)/10000%>
                           </td>
                           <td class="center">
                             <a href="/admin/sim/edit?id=<%=slides[i].id%>" title="edit"><i class="fa fa-pencil-square-o"></i></a>

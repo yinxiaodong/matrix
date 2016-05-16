@@ -16,7 +16,7 @@ export default class extends Base {
 
   async indexAction() {
     let page = this.get('page') || 1;
-    let num = this.get('num') || 10;
+    let num = this.get('num') || 15;
     let q = this.get('q');
 
     let condition = {
