@@ -77,7 +77,7 @@
                               <%=slides[i].unit%>
                           </td>
                           <td class="center">
-                            <%=(slides[i].pint*100+slides[i].sint*100)*(slides[i].prc*100)/10000%>
+                            <%=(slides[i].pint*10+slides[i].sint*10)*(slides[i].prc*10000)/100000%>
                           </td>
                           <td class="center">
                             <a href="/admin/sim/edit?id=<%=slides[i].id%>" title="edit"><i class="fa fa-pencil-square-o"></i></a>

@@ -1146,10 +1146,10 @@ form {
 }
 .form-horizontal .controls input,
 .form-horizontal .controls textarea {
-	width: 90%;
+	/*width: 90%;*/
 }
 .form-horizontal .controls textarea {
-	height: 260px;
+	height: 100px;
 }
 .form-horizontal input[type=text], .form-horizontal input[type=password], .form-horizontal textarea {
 }

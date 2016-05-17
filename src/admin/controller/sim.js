@@ -29,7 +29,7 @@ export default class extends Base {
 
     let model = this.model('sim');
     let slides = await model.page(page, num)
-      .field('sim.id, name, pinyin, unit, pint, sint, prc, sub')
+      .field('sim.id, name, pinyin, unit, pint, sint, prc, bos')
       .order('id DESC')
       .where(condition)
       .countSelect();
@@ -43,21 +43,22 @@ export default class extends Base {
   }
 //保存更新
   async saveAction() {
-    let {sid, title, theme, slide_content} = this.post();
+    let {sid, name, unit, pint, sint, prc, bos, state } = this.post();
 
     //console.log(title, theme, slide_content); 
     let model = this.model("sim");
-    let moment = require('moment');
-    let datetime = moment().format('YYYY-MM-DD HH:mm:ss');
+   // let moment = require('moment');
+    //let datetime = moment().format('YYYY-MM-DD HH:mm:ss');
 
     let record = {
-      title: title,
-      theme: theme,
-      content: slide_content,
-      updateTime: datetime,
-      userId: this.userInfo.id,
-      createTime: datetime
-    };
+      name: name,
+      unit: unit,
+      pint: pint,
+      sint: sint,
+      prc: prc,
+      bos: bos,
+      state: state
+        };
     //console.log(record);
 
     if (!sid) {
