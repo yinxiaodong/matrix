@@ -29,7 +29,7 @@ export default class extends Base {
 
     let model = this.model('sim');
     let slides = await model.page(page, num)
-      .field('sim.id, name, pinyin, unit, pint, sint, prc, bos')
+      .field('sim.id, name, unit, pint, sint, prc, bos')
       .order('id DESC')
       .where(condition)
       .countSelect();
