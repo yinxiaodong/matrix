@@ -64,14 +64,14 @@ export default class extends Base {
     if (!sid) {
       sid = await model.add(record).catch(err => this.json({ err: err.message || 'error' }));
 
-      if (sid) return this.json({ err: '', id: sid });
+      if (sid) return this.redirect('/admin/sim');
     } else {
       let affectedRows = await model
         .where({ id: sid })
         .update(record)
         .catch(err => this.json({ err: err.message || 'error' }));
 
-      if (affectedRows) return this.json({ err: '', id: sid });
+      if (affectedRows) return this.redirect('/admin/sim');
     }
   }
 //禁用
