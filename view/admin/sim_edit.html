@@ -18,11 +18,11 @@
               <%=slide_data.name%>
                 <%}%></a>
       </div>
-      <h1><%if(!slide_data.name){%>
+      <h1><strong><%if(!slide_data.name){%>
                 新建
                 <%}else{%>
                  <%=slide_data.name%>
-                    <%}%></h1>
+                    <%}%></strong></h1>
 
     </div>
     <div class="container-fluid">
@@ -40,43 +40,43 @@
                 <div class="control-group">
                   <label class="control-label">规格型号：</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="name" placeholder="First name" value="<%=slide_data.name%>" />
+                    <input type="text" class="span10" name="name" placeholder="First name" value="<%=slide_data.name%>" />
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">计量单位：</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="unit" placeholder="Last name" value="<%=slide_data.unit%>" />
+                    <input type="text" class="span10" name="unit" placeholder="Last name" value="<%=slide_data.unit%>" />
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">仓库A数量：</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="pint" placeholder="Last name" value="<%=slide_data.pint%>" />
+                    <input type="text" class="span10" name="pint" placeholder="Last name" value="<%=slide_data.pint%>" />
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">仓库B数量：</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="sint" placeholder="Last name" value="<%=slide_data.sint%>" />
+                    <input type="text" class="span10" name="sint" placeholder="Last name" value="<%=slide_data.sint%>" />
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label">最新价格：</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="prc" placeholder="Last name" value="<%=slide_data.prc%>" />
+                    <input type="text" class="span10" name="prc" placeholder="Last name" value="<%=slide_data.prc%>" />
                   </div>
                 </div>             
                 <div class="control-group">
                   <label class="control-label">最新价格：</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="bos" placeholder="Last name" value="<%=slide_data.bos%>" />
+                    <input type="text" class="span10" name="bos" placeholder="Last name" value="<%=slide_data.bos%>" />
                   </div>
                 </div> 
                 <div class="control-group">
                   <label class="control-label">状态：</label>
                   <div class="controls">
-                    <input type="text" class="span11" name="state" placeholder="Last name" value="<%=slide_data.state%>" />
+                    <input type="text" class="span10" name="state" placeholder="Last name" value="<%=slide_data.state%>" />
                   </div>
                 </div>  
                 <div class="form-actions"><button type="submit" class="btn btn-success">Save</button></div>
