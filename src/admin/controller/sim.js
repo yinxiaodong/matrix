@@ -16,8 +16,9 @@ export default class extends Base {
 
   async indexAction() {
     let page = this.get('page') || 1;
-    let num = this.get('num') || 15;
+    let num = this.get('num') || 12;
     let q = this.get('q');
+    let uid = this.get('id');
 
     let condition = {
       state: ["<>", 2]
@@ -26,15 +27,23 @@ export default class extends Base {
     if (q) {
       condition.name = ['like', '%' + q + '%'];
     }
+    
+    if (uid) {
+      condition.type = ['=',  uid ];
+    }
+    let typei = this.model('typei');
+    let ty = await typei.field("id,type").select();
+    //this.assign({ tys : ty });
 
     let model = this.model('sim');
     let slides = await model.page(page, num)
-      .field('sim.id, name, unit, pint, sint, prc, bos')
+      .field('sim.id, name, unit, pint, sint, prc, bos, type')
       .order('id DESC')
       .where(condition)
       .countSelect();
 
-    this.assign({
+    this.assign({ uid,
+      ty,
       slides: slides.data || [],
       pages: slides.totalPages,
       page: slides.currentPage

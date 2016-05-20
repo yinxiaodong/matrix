@@ -18,12 +18,20 @@
 
   <div id="content">
     <div id="content-header">
-      <div id="breadcrumb"> <a href="/admin" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Dashboard</a> <a href="#" class="current">库存管理</a>        </div>
-      <h1><strong>库存管理</strong></h1>
+      <div id="breadcrumb"> <a href="/admin" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Dashboard</a> <a href="#" class="current">库存管理</a></div>
+      <h1>库存管理</h1>
     </div>
     <div class="container-fluid">
-
-      <div class="row-fluid">
+      <div class="btn-wrapper">
+                <a id="edit" href="/admin/sim/edit" class="btn btn-success"><i class="fa fa-plus"></i> 新建</a>
+                <button id="remove" class="btn btn-danger"><i class="fa fa-trash"></i> 删除</button>
+                <select id="stype" class="btn" style="width: 150px;">
+                  <%for(var i = 0; i < ty.length; i++){%>
+                  <option value = <%=ty[i].id%> ><%=ty[i].type%></option>
+                  <%}%>
+                </select>
+              </div>
+      <div id="ddi" class="row-fluid">
         <div class="span12">
           <%if(slides.length <= 0){%>
             <div class="alert alert-block">
@@ -35,17 +43,7 @@
                     <%}%>
             </div>
             <%}else{%>
-              <div class="btn-wrapper">
-                <a id="edit" href="/admin/sim/edit" class="btn btn-success"><i class="fa fa-plus"></i> 新建</a>
-                <button id="remove" class="btn btn-danger"><i class="fa fa-trash"></i> 删除</button>
-
-                <select id="stype" class="btn">
-                  <option>全部类型</option>
-                  <option>深沟球轴承</option>
-                  <option>Relish</option>
-                </select>
-              </div>
-
+         
               <div class="widget-box">
                 <div class="widget-content nopadding">
                   <table class="table table-bordered table-striped with-check">
@@ -119,6 +117,15 @@ $('#remove').on('click', function(e){
   });
   location.href = '/admin/sim/delete?id=' + ids.join();
 });
+$("#stype").get(0).value = this.uid;
+$("#stype").bind("change",function(){ 
+    if($(this).val()==0){
+      location.href = '/admin/sim/index';
+    } 
+    else{
+      location.href = '/admin/sim/index?id=' + $(this).val(); 
+    } 
+  }); 
   </script>
 
   </body>
